@@ -43,6 +43,9 @@ namespace MP3Fix {
             }
         }
 
+        // This List is in case I need to use it in future
+        List<MusicFile> musicList = new List<MusicFile>();
+
         private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e) {
             TreeNode newSelected = e.Node;
             listView1.Items.Clear();
@@ -50,10 +53,25 @@ namespace MP3Fix {
 
             foreach (FileInfo file in nodeDirInfo.GetFiles()) {
                 if (file.Extension == ".mp3") {
-                    textBox1.AppendText(file + "\r\n");
-                }
+                    musicList.Add(new MusicFile(file.DirectoryName + file.ToString())); // Adding to the List in case I need to use it in future
+                    textBox1.AppendText(file.DirectoryName + "\\" + file + "\r\n");
+                }        
+
             }
 
+            foreach (MusicFile file in musicList) {
+                
+                
+            }
+
+            PopulateListView();
+        }
+
+        public void PopulateListView() {
+            foreach (MusicFile file in musicList) {
+                ListViewItem newItem = new ListViewItem(file.FilePath());
+                listView1.Items.Add(newItem);
+            }
         }
     }
 }
