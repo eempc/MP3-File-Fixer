@@ -57,9 +57,18 @@
             this.checkBoxArtistCapitals = new System.Windows.Forms.CheckBox();
             this.checkBoxAlbumCapitals = new System.Windows.Forms.CheckBox();
             this.radioAlbumUseFolder = new System.Windows.Forms.RadioButton();
-            this.groupBoxOutput = new System.Windows.Forms.GroupBox();
+            this.groupBoxOther = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.delimiterTextBox = new System.Windows.Forms.TextBox();
+            this.radioUseTagTrack = new System.Windows.Forms.RadioButton();
+            this.radioTitleNoChange = new System.Windows.Forms.RadioButton();
+            this.radioAlbumNoChange = new System.Windows.Forms.RadioButton();
+            this.radioArtistNoChange = new System.Windows.Forms.RadioButton();
+            this.radioExtrapolateTrack = new System.Windows.Forms.RadioButton();
+            this.radioAlbumUseCustom = new System.Windows.Forms.RadioButton();
+            this.textBoxCustomAlbum = new System.Windows.Forms.TextBox();
+            this.radioArtistUseCustom = new System.Windows.Forms.RadioButton();
+            this.textBoxCustomArtist = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -69,7 +78,7 @@
             this.groupBoxTitle.SuspendLayout();
             this.groupBoxArtist.SuspendLayout();
             this.groupBoxAlbum.SuspendLayout();
-            this.groupBoxOutput.SuspendLayout();
+            this.groupBoxOther.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -108,7 +117,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.splitContainer1.Panel2.Controls.Add(this.groupBoxOutput);
+            this.splitContainer1.Panel2.Controls.Add(this.groupBoxOther);
             this.splitContainer1.Panel2.Controls.Add(this.groupBoxAlbum);
             this.splitContainer1.Panel2.Controls.Add(this.titleUpdateButton);
             this.splitContainer1.Panel2.Controls.Add(this.groupBoxArtist);
@@ -240,6 +249,7 @@
             // groupBoxTitle
             // 
             this.groupBoxTitle.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.groupBoxTitle.Controls.Add(this.radioTitleNoChange);
             this.groupBoxTitle.Controls.Add(this.checkBoxTitleCapitals);
             this.groupBoxTitle.Controls.Add(this.radioTitleExtrapolate);
             this.groupBoxTitle.Controls.Add(this.radioTitleUseTag);
@@ -274,7 +284,7 @@
             // 
             // titleUpdateButton
             // 
-            this.titleUpdateButton.Location = new System.Drawing.Point(102, 495);
+            this.titleUpdateButton.Location = new System.Drawing.Point(143, 495);
             this.titleUpdateButton.Name = "titleUpdateButton";
             this.titleUpdateButton.Size = new System.Drawing.Size(75, 23);
             this.titleUpdateButton.TabIndex = 2;
@@ -285,7 +295,7 @@
             // checkBoxTitleCapitals
             // 
             this.checkBoxTitleCapitals.AutoSize = true;
-            this.checkBoxTitleCapitals.Location = new System.Drawing.Point(18, 67);
+            this.checkBoxTitleCapitals.Location = new System.Drawing.Point(18, 93);
             this.checkBoxTitleCapitals.Name = "checkBoxTitleCapitals";
             this.checkBoxTitleCapitals.Size = new System.Drawing.Size(79, 17);
             this.checkBoxTitleCapitals.TabIndex = 3;
@@ -295,13 +305,16 @@
             // groupBoxArtist
             // 
             this.groupBoxArtist.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.groupBoxArtist.Controls.Add(this.textBoxCustomArtist);
+            this.groupBoxArtist.Controls.Add(this.radioArtistUseCustom);
+            this.groupBoxArtist.Controls.Add(this.radioArtistNoChange);
             this.groupBoxArtist.Controls.Add(this.checkBoxArtistCapitals);
             this.groupBoxArtist.Controls.Add(this.radioArtistUseVarious);
             this.groupBoxArtist.Controls.Add(this.radioArtistUseTag);
             this.groupBoxArtist.Controls.Add(this.radioArtistUseFolder);
-            this.groupBoxArtist.Location = new System.Drawing.Point(8, 364);
+            this.groupBoxArtist.Location = new System.Drawing.Point(276, 220);
             this.groupBoxArtist.Name = "groupBoxArtist";
-            this.groupBoxArtist.Size = new System.Drawing.Size(128, 125);
+            this.groupBoxArtist.Size = new System.Drawing.Size(128, 192);
             this.groupBoxArtist.TabIndex = 4;
             this.groupBoxArtist.TabStop = false;
             this.groupBoxArtist.Text = "Artist Controls";
@@ -342,12 +355,15 @@
             // groupBoxAlbum
             // 
             this.groupBoxAlbum.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.groupBoxAlbum.Controls.Add(this.textBoxCustomAlbum);
+            this.groupBoxAlbum.Controls.Add(this.radioAlbumUseCustom);
+            this.groupBoxAlbum.Controls.Add(this.radioAlbumNoChange);
             this.groupBoxAlbum.Controls.Add(this.radioAlbumUseFolder);
             this.groupBoxAlbum.Controls.Add(this.checkBoxAlbumCapitals);
             this.groupBoxAlbum.Controls.Add(this.radioAlbumUseTag);
             this.groupBoxAlbum.Location = new System.Drawing.Point(143, 220);
             this.groupBoxAlbum.Name = "groupBoxAlbum";
-            this.groupBoxAlbum.Size = new System.Drawing.Size(127, 138);
+            this.groupBoxAlbum.Size = new System.Drawing.Size(127, 167);
             this.groupBoxAlbum.TabIndex = 5;
             this.groupBoxAlbum.TabStop = false;
             this.groupBoxAlbum.Text = "Album Controls";
@@ -366,7 +382,7 @@
             // checkBoxArtistCapitals
             // 
             this.checkBoxArtistCapitals.AutoSize = true;
-            this.checkBoxArtistCapitals.Location = new System.Drawing.Point(17, 90);
+            this.checkBoxArtistCapitals.Location = new System.Drawing.Point(17, 163);
             this.checkBoxArtistCapitals.Name = "checkBoxArtistCapitals";
             this.checkBoxArtistCapitals.Size = new System.Drawing.Size(78, 17);
             this.checkBoxArtistCapitals.TabIndex = 4;
@@ -376,7 +392,7 @@
             // checkBoxAlbumCapitals
             // 
             this.checkBoxAlbumCapitals.AutoSize = true;
-            this.checkBoxAlbumCapitals.Location = new System.Drawing.Point(17, 66);
+            this.checkBoxAlbumCapitals.Location = new System.Drawing.Point(17, 139);
             this.checkBoxAlbumCapitals.Name = "checkBoxAlbumCapitals";
             this.checkBoxAlbumCapitals.Size = new System.Drawing.Size(78, 17);
             this.checkBoxAlbumCapitals.TabIndex = 1;
@@ -394,22 +410,24 @@
             this.radioAlbumUseFolder.Text = "Use folder album";
             this.radioAlbumUseFolder.UseVisualStyleBackColor = true;
             // 
-            // groupBoxOutput
+            // groupBoxOther
             // 
-            this.groupBoxOutput.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.groupBoxOutput.Controls.Add(this.delimiterTextBox);
-            this.groupBoxOutput.Controls.Add(this.label1);
-            this.groupBoxOutput.Location = new System.Drawing.Point(143, 365);
-            this.groupBoxOutput.Name = "groupBoxOutput";
-            this.groupBoxOutput.Size = new System.Drawing.Size(127, 124);
-            this.groupBoxOutput.TabIndex = 6;
-            this.groupBoxOutput.TabStop = false;
-            this.groupBoxOutput.Text = "File Name Controls";
+            this.groupBoxOther.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.groupBoxOther.Controls.Add(this.radioExtrapolateTrack);
+            this.groupBoxOther.Controls.Add(this.radioUseTagTrack);
+            this.groupBoxOther.Controls.Add(this.delimiterTextBox);
+            this.groupBoxOther.Controls.Add(this.label1);
+            this.groupBoxOther.Location = new System.Drawing.Point(410, 220);
+            this.groupBoxOther.Name = "groupBoxOther";
+            this.groupBoxOther.Size = new System.Drawing.Size(127, 124);
+            this.groupBoxOther.TabIndex = 6;
+            this.groupBoxOther.TabStop = false;
+            this.groupBoxOther.Text = "Other Controls";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(8, 23);
+            this.label1.Location = new System.Drawing.Point(6, 93);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(47, 13);
             this.label1.TabIndex = 0;
@@ -417,11 +435,102 @@
             // 
             // delimiterTextBox
             // 
-            this.delimiterTextBox.Location = new System.Drawing.Point(61, 20);
+            this.delimiterTextBox.Location = new System.Drawing.Point(61, 89);
             this.delimiterTextBox.Name = "delimiterTextBox";
             this.delimiterTextBox.Size = new System.Drawing.Size(51, 20);
             this.delimiterTextBox.TabIndex = 1;
             this.delimiterTextBox.Text = " - ";
+            // 
+            // radioUseTagTrack
+            // 
+            this.radioUseTagTrack.AutoSize = true;
+            this.radioUseTagTrack.Location = new System.Drawing.Point(17, 19);
+            this.radioUseTagTrack.Name = "radioUseTagTrack";
+            this.radioUseTagTrack.Size = new System.Drawing.Size(91, 17);
+            this.radioUseTagTrack.TabIndex = 2;
+            this.radioUseTagTrack.TabStop = true;
+            this.radioUseTagTrack.Text = "Use ID3 track";
+            this.radioUseTagTrack.UseVisualStyleBackColor = true;
+            // 
+            // radioTitleNoChange
+            // 
+            this.radioTitleNoChange.AutoSize = true;
+            this.radioTitleNoChange.Location = new System.Drawing.Point(17, 67);
+            this.radioTitleNoChange.Name = "radioTitleNoChange";
+            this.radioTitleNoChange.Size = new System.Drawing.Size(78, 17);
+            this.radioTitleNoChange.TabIndex = 4;
+            this.radioTitleNoChange.TabStop = true;
+            this.radioTitleNoChange.Text = "No change";
+            this.radioTitleNoChange.UseVisualStyleBackColor = true;
+            // 
+            // radioAlbumNoChange
+            // 
+            this.radioAlbumNoChange.AutoSize = true;
+            this.radioAlbumNoChange.Location = new System.Drawing.Point(17, 66);
+            this.radioAlbumNoChange.Name = "radioAlbumNoChange";
+            this.radioAlbumNoChange.Size = new System.Drawing.Size(78, 17);
+            this.radioAlbumNoChange.TabIndex = 5;
+            this.radioAlbumNoChange.TabStop = true;
+            this.radioAlbumNoChange.Text = "No change";
+            this.radioAlbumNoChange.UseVisualStyleBackColor = true;
+            // 
+            // radioArtistNoChange
+            // 
+            this.radioArtistNoChange.AutoSize = true;
+            this.radioArtistNoChange.Location = new System.Drawing.Point(17, 89);
+            this.radioArtistNoChange.Name = "radioArtistNoChange";
+            this.radioArtistNoChange.Size = new System.Drawing.Size(78, 17);
+            this.radioArtistNoChange.TabIndex = 5;
+            this.radioArtistNoChange.TabStop = true;
+            this.radioArtistNoChange.Text = "No change";
+            this.radioArtistNoChange.UseVisualStyleBackColor = true;
+            // 
+            // radioExtrapolateTrack
+            // 
+            this.radioExtrapolateTrack.AutoSize = true;
+            this.radioExtrapolateTrack.Location = new System.Drawing.Point(17, 42);
+            this.radioExtrapolateTrack.Name = "radioExtrapolateTrack";
+            this.radioExtrapolateTrack.Size = new System.Drawing.Size(105, 17);
+            this.radioExtrapolateTrack.TabIndex = 3;
+            this.radioExtrapolateTrack.TabStop = true;
+            this.radioExtrapolateTrack.Text = "Extrapolate track";
+            this.radioExtrapolateTrack.UseVisualStyleBackColor = true;
+            // 
+            // radioAlbumUseCustom
+            // 
+            this.radioAlbumUseCustom.AutoSize = true;
+            this.radioAlbumUseCustom.Location = new System.Drawing.Point(17, 90);
+            this.radioAlbumUseCustom.Name = "radioAlbumUseCustom";
+            this.radioAlbumUseCustom.Size = new System.Drawing.Size(81, 17);
+            this.radioAlbumUseCustom.TabIndex = 6;
+            this.radioAlbumUseCustom.TabStop = true;
+            this.radioAlbumUseCustom.Text = "Use custom";
+            this.radioAlbumUseCustom.UseVisualStyleBackColor = true;
+            // 
+            // textBoxCustomAlbum
+            // 
+            this.textBoxCustomAlbum.Location = new System.Drawing.Point(17, 115);
+            this.textBoxCustomAlbum.Name = "textBoxCustomAlbum";
+            this.textBoxCustomAlbum.Size = new System.Drawing.Size(95, 20);
+            this.textBoxCustomAlbum.TabIndex = 7;
+            // 
+            // radioArtistUseCustom
+            // 
+            this.radioArtistUseCustom.AutoSize = true;
+            this.radioArtistUseCustom.Location = new System.Drawing.Point(17, 113);
+            this.radioArtistUseCustom.Name = "radioArtistUseCustom";
+            this.radioArtistUseCustom.Size = new System.Drawing.Size(81, 17);
+            this.radioArtistUseCustom.TabIndex = 8;
+            this.radioArtistUseCustom.TabStop = true;
+            this.radioArtistUseCustom.Text = "Use custom";
+            this.radioArtistUseCustom.UseVisualStyleBackColor = true;
+            // 
+            // textBoxCustomArtist
+            // 
+            this.textBoxCustomArtist.Location = new System.Drawing.Point(17, 137);
+            this.textBoxCustomArtist.Name = "textBoxCustomArtist";
+            this.textBoxCustomArtist.Size = new System.Drawing.Size(95, 20);
+            this.textBoxCustomArtist.TabIndex = 8;
             // 
             // Form1
             // 
@@ -449,8 +558,8 @@
             this.groupBoxArtist.PerformLayout();
             this.groupBoxAlbum.ResumeLayout(false);
             this.groupBoxAlbum.PerformLayout();
-            this.groupBoxOutput.ResumeLayout(false);
-            this.groupBoxOutput.PerformLayout();
+            this.groupBoxOther.ResumeLayout(false);
+            this.groupBoxOther.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -491,9 +600,18 @@
         private System.Windows.Forms.CheckBox checkBoxArtistCapitals;
         private System.Windows.Forms.CheckBox checkBoxAlbumCapitals;
         private System.Windows.Forms.RadioButton radioAlbumUseFolder;
-        private System.Windows.Forms.GroupBox groupBoxOutput;
+        private System.Windows.Forms.GroupBox groupBoxOther;
         private System.Windows.Forms.TextBox delimiterTextBox;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.RadioButton radioUseTagTrack;
+        private System.Windows.Forms.RadioButton radioTitleNoChange;
+        private System.Windows.Forms.RadioButton radioAlbumNoChange;
+        private System.Windows.Forms.RadioButton radioArtistNoChange;
+        private System.Windows.Forms.RadioButton radioExtrapolateTrack;
+        private System.Windows.Forms.TextBox textBoxCustomAlbum;
+        private System.Windows.Forms.RadioButton radioAlbumUseCustom;
+        private System.Windows.Forms.RadioButton radioArtistUseCustom;
+        private System.Windows.Forms.TextBox textBoxCustomArtist;
     }
 }
 

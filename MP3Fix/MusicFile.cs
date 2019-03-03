@@ -8,12 +8,12 @@ namespace MP3Fix{
     class MusicFile {
         string filePath;
         
-        
-
         public MusicFile(string filePath) {
             this.filePath = filePath;
+            
         }
 
+        // Read data and preparation methods
         public string FilePath() {
            
             return filePath;
@@ -54,6 +54,8 @@ namespace MP3Fix{
         public string OutputFileName(string delimiter, string fileExtension) {
             return Path.GetDirectoryName(filePath) + "\\" + Artist() + delimiter + Track().ToString("00") + delimiter + Title() + fileExtension;
         }
+
+        // Writing the new file methods
 
     }
 }

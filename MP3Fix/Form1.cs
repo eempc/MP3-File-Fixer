@@ -68,8 +68,7 @@ namespace MP3Fix {
                 }        
             }
             //listView1.AutoResizeColumn(ColumnHeaderAutoResizeStyle.HeaderSize);
-            PopulateListView();
-            
+            PopulateListView();         
         }
 
         public void PopulateListView() {
@@ -83,12 +82,35 @@ namespace MP3Fix {
                 newItem.SubItems.Add(file.Title());
                 newItem.SubItems.Add(file.OutputFileName(" - ", ".mp3"));
                 listView1.Items.Add(newItem);
-            }
-            
+            }            
         }
 
         private void titleUpdateButton_Click(object sender, EventArgs e) {
+            UpdateAlbumColumn();
+            UpdateArtistColumn();
+            UpdateTrackColumn();
+            UpdateTitleColumn();
+        }
+
+        public void UpdateArtistColumn() {
 
         }
+
+        public void UpdateAlbumColumn() {
+
+        }
+
+        public void UpdateTitleColumn() {
+
+        }
+
+        public void UpdateTrackColumn() {
+
+        }
+
+        public void UpdateOutputColumn() {
+
+        }
+
     }
 }
