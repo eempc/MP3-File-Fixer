@@ -127,7 +127,7 @@
             // 
             // columnHeader2
             // 
-            this.columnHeader2.Text = "Type";
+            this.columnHeader2.Text = "Album";
             // 
             // columnHeader3
             // 

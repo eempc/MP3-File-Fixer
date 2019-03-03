@@ -49,29 +49,33 @@ namespace MP3Fix {
         private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e) {
             TreeNode newSelected = e.Node;
             listView1.Items.Clear();
+            musicList.Clear();
             DirectoryInfo nodeDirInfo = (DirectoryInfo) newSelected.Tag;
 
             foreach (FileInfo file in nodeDirInfo.GetFiles()) {
                 if (file.Extension == ".mp3") {
-                    musicList.Add(new MusicFile(file.DirectoryName + file.ToString())); // Adding to the List in case I need to use it in future
-                    textBox1.AppendText(file.DirectoryName + "\\" + file + "\r\n");
+                    musicList.Add(new MusicFile(file.DirectoryName + "\\" + file.ToString())); // Adding to the List in case I need to use it in future
+                    //textBox1.AppendText(file.DirectoryName + "\\" + file + "\r\n");
                 }        
-
             }
-
-            foreach (MusicFile file in musicList) {
-                
-                
-            }
-
+            //listView1.AutoResizeColumn(ColumnHeaderAutoResizeStyle.HeaderSize);
             PopulateListView();
+            
         }
 
         public void PopulateListView() {
+            // Do a check for path length to ensure the folder is in the right format
+            
             foreach (MusicFile file in musicList) {
-                ListViewItem newItem = new ListViewItem(file.FilePath());
+                ListViewItem newItem = new ListViewItem(file.FilePath(), 1);
+                newItem.SubItems.Add(file.Album());
+                newItem.SubItems.Add(file.Artist());
+                newItem.SubItems.Add(file.Track().ToString("00"));
+                newItem.SubItems.Add(file.Title());
+                newItem.SubItems.Add(file.OutputFileName(" - ", ".mp3"));
                 listView1.Items.Add(newItem);
             }
+            
         }
     }
 }
