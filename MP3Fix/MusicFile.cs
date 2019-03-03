@@ -20,8 +20,8 @@ namespace MP3Fix{
             return filePath;
         }
 
-        public string Artist() {     
-            if (!string.IsNullOrEmpty(currentFile.Tag.Performers[0]))
+        public string Artist() {
+            if (currentFile.Tag.Performers.Length != 0 && !string.IsNullOrEmpty(currentFile.Tag.Performers[0]))
                 return currentFile.Tag.Performers[0];
             else
                 return filePath.Split('\\')[2];

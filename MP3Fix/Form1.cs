@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Collections;
+using System.Text.RegularExpressions;
 
 namespace MP3Fix {
     public partial class Form1 : Form {
@@ -56,9 +57,10 @@ namespace MP3Fix {
         List<MusicFile> musicList = new List<MusicFile>();
 
         private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e) {
-            TreeNode newSelected = e.Node;
             listView1.Items.Clear();
             musicList.Clear();
+
+            TreeNode newSelected = e.Node;
             DirectoryInfo nodeDirInfo = (DirectoryInfo) newSelected.Tag;
 
             foreach (FileInfo file in nodeDirInfo.GetFiles()) {
@@ -86,29 +88,6 @@ namespace MP3Fix {
         }
 
         private void titleUpdateButton_Click(object sender, EventArgs e) {
-            UpdateAlbumColumn();
-            UpdateArtistColumn();
-            UpdateTrackColumn();
-            UpdateTitleColumn();
-        }
-
-        public void UpdateArtistColumn() {
-
-        }
-
-        public void UpdateAlbumColumn() {
-
-        }
-
-        public void UpdateTitleColumn() {
-
-        }
-
-        public void UpdateTrackColumn() {
-
-        }
-
-        public void UpdateOutputColumn() {
 
         }
 
@@ -120,7 +99,17 @@ namespace MP3Fix {
         }
 
         private void radioTitleExtrapolate_Click(object sender, EventArgs e) {
+            foreach (ListViewItem item in listView1.Items) {
+                string fullPath = item.SubItems[0].Text;
+                string artist = fullPath.Split('\\')[2];
+                string fileName = Path.GetFileNameWithoutExtension(fullPath);
+                string result = RemoveDigits(fileName.Replace(artist, "").Replace("-","").Replace("."," ").Replace("_"," ").Trim());
+                item.SubItems[4].Text = result;
+            }
+        }
 
+        public string RemoveDigits(string str) {
+            return Regex.Replace(str, @"\d", "");
         }
     }
 }

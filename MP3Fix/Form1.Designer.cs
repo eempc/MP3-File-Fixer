@@ -475,10 +475,10 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(781, 335);
+            this.textBox1.Location = new System.Drawing.Point(558, 335);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(86, 133);
+            this.textBox1.Size = new System.Drawing.Size(309, 167);
             this.textBox1.TabIndex = 1;
             // 
             // listView1
