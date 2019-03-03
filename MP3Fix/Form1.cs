@@ -113,9 +113,14 @@ namespace MP3Fix {
         }
 
         private void radioTitleUseTag_Click(object sender, EventArgs e) {
-            foreach (ListViewItem item in listView1.Items) {
-                
+            // As long as the listview remains in order this can be used
+            for (int i = 0; i < musicList.Count; i++) {
+                listView1.Items[i].SubItems[4].Text = musicList[i].Title(); 
             }
+        }
+
+        private void radioTitleExtrapolate_Click(object sender, EventArgs e) {
+
         }
     }
 }

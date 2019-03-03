@@ -41,7 +41,7 @@ namespace MP3Fix{
                 string x = "";
                 foreach (char c in Path.GetFileNameWithoutExtension(filePath))
                     if (char.IsDigit(c) && x.Length <= 2) x += c;
-                return (x.Length > 0) ? int.Parse(x) : 0 ;
+                return (x.Length > 0) ? int.Parse(x) : 99 ;
             }
         }
 

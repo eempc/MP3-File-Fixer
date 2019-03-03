@@ -449,6 +449,7 @@
             this.radioTitleExtrapolate.TabStop = true;
             this.radioTitleExtrapolate.Text = "Extrapolate title";
             this.radioTitleExtrapolate.UseVisualStyleBackColor = true;
+            this.radioTitleExtrapolate.Click += new System.EventHandler(this.radioTitleExtrapolate_Click);
             // 
             // radioTitleUseTag
             // 
