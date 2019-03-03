@@ -19,6 +19,15 @@ namespace MP3Fix {
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e) => Application.Exit();
 
+        private void button1_Click(object sender, EventArgs e) {
+            PopUpForm();
+        }
+
+        public void PopUpForm() {
+            var form = new FormPopUp();
+            form.Show(this);
+        }
+
         public void PopulateTreeView(string folderPath) {
             TreeNode rootNode;
             DirectoryInfo info = new DirectoryInfo(folderPath);
@@ -76,6 +85,10 @@ namespace MP3Fix {
                 listView1.Items.Add(newItem);
             }
             
+        }
+
+        private void titleUpdateButton_Click(object sender, EventArgs e) {
+
         }
     }
 }

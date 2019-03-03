@@ -4,9 +4,11 @@ using System.IO;
 
 // Music files are loaded in via their full path as the only argument. From then their meta data is accessed in various ways
 
-namespace MP3Fix {
+namespace MP3Fix{
     class MusicFile {
         string filePath;
+        
+        
 
         public MusicFile(string filePath) {
             this.filePath = filePath;
