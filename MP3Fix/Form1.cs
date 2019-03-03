@@ -112,5 +112,10 @@ namespace MP3Fix {
 
         }
 
+        private void radioTitleUseTag_Click(object sender, EventArgs e) {
+            foreach (ListViewItem item in listView1.Items) {
+                
+            }
+        }
     }
 }
