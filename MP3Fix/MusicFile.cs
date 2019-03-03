@@ -58,5 +58,14 @@ namespace MP3Fix{
 
         // Writing the new file methods
 
+        public void WriteChanges(string newArtist, string newTrack, string newTitle, string newFilePath, string newAlbum) {            
+            currentFile.Tag.Album = newAlbum;
+            currentFile.Tag.Title = newTitle;
+            currentFile.Tag.Track = (uint)int.Parse(newTrack);
+            currentFile.Tag.Performers = new string[1] { newArtist };
+            currentFile.Save();
+            System.IO.File.Move(filePath, newFilePath);
+        }
+
     }
 }
