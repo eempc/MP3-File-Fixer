@@ -35,15 +35,21 @@ namespace MP3Fix{
         }
 
         public int Track() {
-            return (int) currentFile.Tag.Track;
+            if (currentFile.Tag.Track != 0)
+                return (int) currentFile.Tag.Track;
+            else {
+                string x = "";
+                foreach (char c in Path.GetFileNameWithoutExtension(filePath))
+                    if (char.IsDigit(c) && x.Length <= 2) x += c;
+                return (x.Length > 0) ? int.Parse(x) : 0 ;
+            }
         }
 
         public string Title() {
-            TagLib.File currentFile = TagLib.File.Create(filePath);
-            if (string.IsNullOrEmpty(currentFile.Tag.Title))
-                return Path.GetFileNameWithoutExtension(filePath);
+            if (!string.IsNullOrEmpty(currentFile.Tag.Title))
+                return currentFile.Tag.Title;           
             else
-                return currentFile.Tag.Title;
+                return Path.GetFileNameWithoutExtension(filePath);
         }
 
         public string OutputFileName(string delimiter, string fileExtension) {
