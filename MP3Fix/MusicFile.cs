@@ -10,7 +10,7 @@ namespace MP3Fix {
             this.filePath = filePath;
         }
 
-        public string Path() {
+        public string FilePath() {
            
             return filePath;
         }
@@ -39,7 +39,17 @@ namespace MP3Fix {
             }
         }
 
+        public string Title() {
+            TagLib.File currentFile = TagLib.File.Create(filePath);
+            if (string.IsNullOrEmpty(currentFile.Tag.Title))
+                return Path.GetFileNameWithoutExtension(filePath);
+            else
+                return currentFile.Tag.Title;
+        }
 
+        public string OutputFileName(string delimiter, string fileExtension) {
+            return Path.GetDirectoryName(filePath) + "\\" + Artist() + delimiter + Track().ToString("00") + delimiter + Title() + fileExtension;
+        }
 
     }
 }
