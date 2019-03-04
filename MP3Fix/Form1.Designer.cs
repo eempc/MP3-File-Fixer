@@ -33,6 +33,7 @@
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.treeView1 = new System.Windows.Forms.TreeView();
+            this.buttonWriteChanges = new System.Windows.Forms.Button();
             this.groupBoxOther = new System.Windows.Forms.GroupBox();
             this.radioExtrapolateTrack = new System.Windows.Forms.RadioButton();
             this.radioUseTagTrack = new System.Windows.Forms.RadioButton();
@@ -41,19 +42,18 @@
             this.groupBoxAlbum = new System.Windows.Forms.GroupBox();
             this.textBoxAlbum = new System.Windows.Forms.TextBox();
             this.radioAlbumUseCustom = new System.Windows.Forms.RadioButton();
-            this.radioAlbumNoChange = new System.Windows.Forms.RadioButton();
             this.radioAlbumUseFolder = new System.Windows.Forms.RadioButton();
             this.radioAlbumUseTag = new System.Windows.Forms.RadioButton();
             this.titleUpdateButton = new System.Windows.Forms.Button();
             this.groupBoxArtist = new System.Windows.Forms.GroupBox();
             this.textBoxArtist = new System.Windows.Forms.TextBox();
             this.radioArtistUseCustom = new System.Windows.Forms.RadioButton();
-            this.radioArtistNoChange = new System.Windows.Forms.RadioButton();
             this.radioArtistUseVarious = new System.Windows.Forms.RadioButton();
             this.radioArtistUseTag = new System.Windows.Forms.RadioButton();
             this.radioArtistUseFolder = new System.Windows.Forms.RadioButton();
             this.groupBoxTitle = new System.Windows.Forms.GroupBox();
-            this.radioTitleNoChange = new System.Windows.Forms.RadioButton();
+            this.labelManualTitle = new System.Windows.Forms.Label();
+            this.textBoxManualTitle = new System.Windows.Forms.TextBox();
             this.radioTitleExtrapolate = new System.Windows.Forms.RadioButton();
             this.radioTitleUseTag = new System.Windows.Forms.RadioButton();
             this.button1 = new System.Windows.Forms.Button();
@@ -66,9 +66,8 @@
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.textBoxManualTitle = new System.Windows.Forms.TextBox();
-            this.labelManualTitle = new System.Windows.Forms.Label();
-            this.buttonWriteChanges = new System.Windows.Forms.Button();
+            this.textBoxTrack = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -176,16 +175,28 @@
             this.treeView1.TabIndex = 0;
             this.treeView1.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseClick);
             // 
+            // buttonWriteChanges
+            // 
+            this.buttonWriteChanges.Location = new System.Drawing.Point(577, 445);
+            this.buttonWriteChanges.Name = "buttonWriteChanges";
+            this.buttonWriteChanges.Size = new System.Drawing.Size(75, 41);
+            this.buttonWriteChanges.TabIndex = 7;
+            this.buttonWriteChanges.Text = "Write Changes";
+            this.buttonWriteChanges.UseVisualStyleBackColor = true;
+            this.buttonWriteChanges.Click += new System.EventHandler(this.buttonWriteChanges_Click);
+            // 
             // groupBoxOther
             // 
             this.groupBoxOther.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.groupBoxOther.Controls.Add(this.label2);
+            this.groupBoxOther.Controls.Add(this.textBoxTrack);
             this.groupBoxOther.Controls.Add(this.radioExtrapolateTrack);
             this.groupBoxOther.Controls.Add(this.radioUseTagTrack);
             this.groupBoxOther.Controls.Add(this.textBoxDelimiter);
             this.groupBoxOther.Controls.Add(this.label1);
-            this.groupBoxOther.Location = new System.Drawing.Point(406, 354);
+            this.groupBoxOther.Location = new System.Drawing.Point(406, 343);
             this.groupBoxOther.Name = "groupBoxOther";
-            this.groupBoxOther.Size = new System.Drawing.Size(127, 192);
+            this.groupBoxOther.Size = new System.Drawing.Size(127, 203);
             this.groupBoxOther.TabIndex = 6;
             this.groupBoxOther.TabStop = false;
             this.groupBoxOther.Text = "Other Controls";
@@ -200,6 +211,7 @@
             this.radioExtrapolateTrack.TabStop = true;
             this.radioExtrapolateTrack.Text = "Extrapolate track";
             this.radioExtrapolateTrack.UseVisualStyleBackColor = true;
+            this.radioExtrapolateTrack.Click += new System.EventHandler(this.radioExtrapolateTrack_Click);
             // 
             // radioUseTagTrack
             // 
@@ -211,10 +223,11 @@
             this.radioUseTagTrack.TabStop = true;
             this.radioUseTagTrack.Text = "Use ID3 track";
             this.radioUseTagTrack.UseVisualStyleBackColor = true;
+            this.radioUseTagTrack.Click += new System.EventHandler(this.radioUseTagTrack_Click);
             // 
             // textBoxDelimiter
             // 
-            this.textBoxDelimiter.Location = new System.Drawing.Point(61, 150);
+            this.textBoxDelimiter.Location = new System.Drawing.Point(39, 170);
             this.textBoxDelimiter.Name = "textBoxDelimiter";
             this.textBoxDelimiter.Size = new System.Drawing.Size(51, 20);
             this.textBoxDelimiter.TabIndex = 1;
@@ -223,7 +236,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 154);
+            this.label1.Location = new System.Drawing.Point(43, 145);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(47, 13);
             this.label1.TabIndex = 0;
@@ -234,12 +247,11 @@
             this.groupBoxAlbum.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.groupBoxAlbum.Controls.Add(this.textBoxAlbum);
             this.groupBoxAlbum.Controls.Add(this.radioAlbumUseCustom);
-            this.groupBoxAlbum.Controls.Add(this.radioAlbumNoChange);
             this.groupBoxAlbum.Controls.Add(this.radioAlbumUseFolder);
             this.groupBoxAlbum.Controls.Add(this.radioAlbumUseTag);
-            this.groupBoxAlbum.Location = new System.Drawing.Point(139, 379);
+            this.groupBoxAlbum.Location = new System.Drawing.Point(139, 343);
             this.groupBoxAlbum.Name = "groupBoxAlbum";
-            this.groupBoxAlbum.Size = new System.Drawing.Size(127, 167);
+            this.groupBoxAlbum.Size = new System.Drawing.Size(127, 203);
             this.groupBoxAlbum.TabIndex = 5;
             this.groupBoxAlbum.TabStop = false;
             this.groupBoxAlbum.Text = "Album Controls";
@@ -264,17 +276,6 @@
             this.radioAlbumUseCustom.Text = "Use custom";
             this.radioAlbumUseCustom.UseVisualStyleBackColor = true;
             this.radioAlbumUseCustom.Click += new System.EventHandler(this.radioAlbumUseCustom_Click);
-            // 
-            // radioAlbumNoChange
-            // 
-            this.radioAlbumNoChange.AutoSize = true;
-            this.radioAlbumNoChange.Location = new System.Drawing.Point(17, 66);
-            this.radioAlbumNoChange.Name = "radioAlbumNoChange";
-            this.radioAlbumNoChange.Size = new System.Drawing.Size(78, 17);
-            this.radioAlbumNoChange.TabIndex = 5;
-            this.radioAlbumNoChange.TabStop = true;
-            this.radioAlbumNoChange.Text = "No change";
-            this.radioAlbumNoChange.UseVisualStyleBackColor = true;
             // 
             // radioAlbumUseFolder
             // 
@@ -315,13 +316,12 @@
             this.groupBoxArtist.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.groupBoxArtist.Controls.Add(this.textBoxArtist);
             this.groupBoxArtist.Controls.Add(this.radioArtistUseCustom);
-            this.groupBoxArtist.Controls.Add(this.radioArtistNoChange);
             this.groupBoxArtist.Controls.Add(this.radioArtistUseVarious);
             this.groupBoxArtist.Controls.Add(this.radioArtistUseTag);
             this.groupBoxArtist.Controls.Add(this.radioArtistUseFolder);
-            this.groupBoxArtist.Location = new System.Drawing.Point(272, 354);
+            this.groupBoxArtist.Location = new System.Drawing.Point(272, 343);
             this.groupBoxArtist.Name = "groupBoxArtist";
-            this.groupBoxArtist.Size = new System.Drawing.Size(128, 192);
+            this.groupBoxArtist.Size = new System.Drawing.Size(128, 203);
             this.groupBoxArtist.TabIndex = 4;
             this.groupBoxArtist.TabStop = false;
             this.groupBoxArtist.Text = "Artist Controls";
@@ -346,17 +346,6 @@
             this.radioArtistUseCustom.Text = "Use custom";
             this.radioArtistUseCustom.UseVisualStyleBackColor = true;
             this.radioArtistUseCustom.Click += new System.EventHandler(this.radioArtistUseCustom_Click);
-            // 
-            // radioArtistNoChange
-            // 
-            this.radioArtistNoChange.AutoSize = true;
-            this.radioArtistNoChange.Location = new System.Drawing.Point(17, 89);
-            this.radioArtistNoChange.Name = "radioArtistNoChange";
-            this.radioArtistNoChange.Size = new System.Drawing.Size(78, 17);
-            this.radioArtistNoChange.TabIndex = 5;
-            this.radioArtistNoChange.TabStop = true;
-            this.radioArtistNoChange.Text = "No change";
-            this.radioArtistNoChange.UseVisualStyleBackColor = true;
             // 
             // radioArtistUseVarious
             // 
@@ -399,26 +388,32 @@
             this.groupBoxTitle.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.groupBoxTitle.Controls.Add(this.labelManualTitle);
             this.groupBoxTitle.Controls.Add(this.textBoxManualTitle);
-            this.groupBoxTitle.Controls.Add(this.radioTitleNoChange);
             this.groupBoxTitle.Controls.Add(this.radioTitleExtrapolate);
             this.groupBoxTitle.Controls.Add(this.radioTitleUseTag);
-            this.groupBoxTitle.Location = new System.Drawing.Point(5, 378);
+            this.groupBoxTitle.Location = new System.Drawing.Point(5, 343);
             this.groupBoxTitle.Name = "groupBoxTitle";
-            this.groupBoxTitle.Size = new System.Drawing.Size(128, 168);
+            this.groupBoxTitle.Size = new System.Drawing.Size(128, 203);
             this.groupBoxTitle.TabIndex = 3;
             this.groupBoxTitle.TabStop = false;
             this.groupBoxTitle.Text = "Title Controls";
             // 
-            // radioTitleNoChange
+            // labelManualTitle
             // 
-            this.radioTitleNoChange.AutoSize = true;
-            this.radioTitleNoChange.Location = new System.Drawing.Point(17, 67);
-            this.radioTitleNoChange.Name = "radioTitleNoChange";
-            this.radioTitleNoChange.Size = new System.Drawing.Size(78, 17);
-            this.radioTitleNoChange.TabIndex = 4;
-            this.radioTitleNoChange.TabStop = true;
-            this.radioTitleNoChange.Text = "No change";
-            this.radioTitleNoChange.UseVisualStyleBackColor = true;
+            this.labelManualTitle.AutoSize = true;
+            this.labelManualTitle.Location = new System.Drawing.Point(15, 122);
+            this.labelManualTitle.Name = "labelManualTitle";
+            this.labelManualTitle.Size = new System.Drawing.Size(99, 13);
+            this.labelManualTitle.TabIndex = 5;
+            this.labelManualTitle.Text = "Single Title Change";
+            // 
+            // textBoxManualTitle
+            // 
+            this.textBoxManualTitle.Location = new System.Drawing.Point(15, 138);
+            this.textBoxManualTitle.Name = "textBoxManualTitle";
+            this.textBoxManualTitle.Size = new System.Drawing.Size(100, 20);
+            this.textBoxManualTitle.TabIndex = 0;
+            this.textBoxManualTitle.TextChanged += new System.EventHandler(this.textBoxManualTitle_TextChanged);
+            this.textBoxManualTitle.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxManualTitle_KeyPress);
             // 
             // radioTitleExtrapolate
             // 
@@ -516,33 +511,23 @@
             this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             // 
-            // textBoxManualTitle
+            // textBoxTrack
             // 
-            this.textBoxManualTitle.Location = new System.Drawing.Point(15, 138);
-            this.textBoxManualTitle.Name = "textBoxManualTitle";
-            this.textBoxManualTitle.Size = new System.Drawing.Size(100, 20);
-            this.textBoxManualTitle.TabIndex = 0;
-            this.textBoxManualTitle.TextChanged += new System.EventHandler(this.textBoxManualTitle_TextChanged);
-            this.textBoxManualTitle.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxManualTitle_KeyPress);
+            this.textBoxTrack.Location = new System.Drawing.Point(39, 106);
+            this.textBoxTrack.Name = "textBoxTrack";
+            this.textBoxTrack.Size = new System.Drawing.Size(51, 20);
+            this.textBoxTrack.TabIndex = 4;
+            this.textBoxTrack.Click += new System.EventHandler(this.textBoxTrack_Click);
+            this.textBoxTrack.TextChanged += new System.EventHandler(this.textBoxTrack_TextChanged);
             // 
-            // labelManualTitle
+            // label2
             // 
-            this.labelManualTitle.AutoSize = true;
-            this.labelManualTitle.Location = new System.Drawing.Point(15, 122);
-            this.labelManualTitle.Name = "labelManualTitle";
-            this.labelManualTitle.Size = new System.Drawing.Size(99, 13);
-            this.labelManualTitle.TabIndex = 5;
-            this.labelManualTitle.Text = "Single Title Change";
-            // 
-            // buttonWriteChanges
-            // 
-            this.buttonWriteChanges.Location = new System.Drawing.Point(577, 445);
-            this.buttonWriteChanges.Name = "buttonWriteChanges";
-            this.buttonWriteChanges.Size = new System.Drawing.Size(75, 41);
-            this.buttonWriteChanges.TabIndex = 7;
-            this.buttonWriteChanges.Text = "Write Changes";
-            this.buttonWriteChanges.UseVisualStyleBackColor = true;
-            this.buttonWriteChanges.Click += new System.EventHandler(this.buttonWriteChanges_Click);
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(17, 90);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(102, 13);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Single track change";
             // 
             // Form1
             // 
@@ -613,9 +598,6 @@
         private System.Windows.Forms.TextBox textBoxDelimiter;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.RadioButton radioUseTagTrack;
-        private System.Windows.Forms.RadioButton radioTitleNoChange;
-        private System.Windows.Forms.RadioButton radioAlbumNoChange;
-        private System.Windows.Forms.RadioButton radioArtistNoChange;
         private System.Windows.Forms.RadioButton radioExtrapolateTrack;
         private System.Windows.Forms.TextBox textBoxAlbum;
         private System.Windows.Forms.RadioButton radioAlbumUseCustom;
@@ -624,6 +606,8 @@
         private System.Windows.Forms.TextBox textBoxManualTitle;
         private System.Windows.Forms.Label labelManualTitle;
         private System.Windows.Forms.Button buttonWriteChanges;
+        private System.Windows.Forms.TextBox textBoxTrack;
+        private System.Windows.Forms.Label label2;
     }
 }
 

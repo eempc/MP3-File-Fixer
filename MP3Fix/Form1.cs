@@ -59,7 +59,6 @@ namespace MP3Fix {
         List<MusicFile> musicList = new List<MusicFile>();
 
         private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e) {
-
             ClearEverything();
 
             TreeNode newSelected = e.Node;
@@ -118,6 +117,37 @@ namespace MP3Fix {
                 item.SubItems[5].Text = Path.GetDirectoryName(item.SubItems[0].Text) + "\\" + item.SubItems[2].Text + textBoxDelimiter.Text + item.SubItems[3].Text + textBoxDelimiter.Text + item.SubItems[4].Text + ".mp3";
         }
 
+        public string RemoveDigits(string str) {
+            return Regex.Replace(str, @"\d", "");
+        }
+
+        private void buttonWriteChanges_Click(object sender, EventArgs e) {
+            for (int i = 0; i < musicList.Count; i++) {
+                string newArtist = listView1.Items[i].SubItems[2].Text;
+                string newAlbum = listView1.Items[i].SubItems[1].Text;
+                string newTrack = listView1.Items[i].SubItems[3].Text;
+                string newTitle = listView1.Items[i].SubItems[4].Text;
+                string newFilePath = listView1.Items[i].SubItems[5].Text;
+                musicList[i].WriteChanges(newArtist, newTrack, newTitle, newFilePath, newAlbum);
+            }
+        }
+
+        public void ChangeColumn(int column, string str) {
+            foreach (ListViewItem item in listView1.Items) {
+                item.SubItems[column].Text = str;
+            }
+        }
+
+        private void listView1_MouseClick(object sender, MouseEventArgs e) {
+            textBoxManualTitle.Text = listView1.SelectedItems[0].SubItems[4].Text;
+            if (!string.IsNullOrEmpty(listView1.SelectedItems[0].SubItems[3].Text)) {
+                textBoxTrack.Text = listView1.SelectedItems[0].SubItems[3].Text;
+            }
+            //textBox1.Text = sender.ToString();
+        }
+
+        // Title
+
         private void radioTitleUseTag_Click(object sender, EventArgs e) {
             // As long as the listview remains in order this can be used
             for (int i = 0; i < musicList.Count; i++) {
@@ -137,9 +167,21 @@ namespace MP3Fix {
             UpdateOutputColumn();
         }
 
-        public string RemoveDigits(string str) {
-            return Regex.Replace(str, @"\d", "");
+        private void textBoxManualTitle_TextChanged(object sender, EventArgs e) {
+            listView1.SelectedItems[0].SubItems[4].Text = textBoxManualTitle.Text;
+            UpdateOutputColumn();
         }
+
+
+        private void textBoxManualTitle_KeyPress(object sender, KeyPressEventArgs e) {
+            // Nope I cannot do this bit. I want to change the SelectedItem to the next one
+            int index = listView1.SelectedIndices[0];
+            if (e.KeyChar == 13) {
+
+            }
+        }
+
+        // Album
 
         private void radioAlbumUseTag_Click(object sender, EventArgs e) {
             for (int i = 0; i < musicList.Count; i++) {
@@ -157,6 +199,26 @@ namespace MP3Fix {
             }
             UpdateOutputColumn();
         }
+
+        private void radioAlbumUseCustom_Click(object sender, EventArgs e) {
+            this.ActiveControl = textBoxAlbum;
+            if (!string.IsNullOrEmpty(textBoxAlbum.Text)) {
+                ChangeColumn(1, textBoxAlbum.Text);
+            }
+            UpdateOutputColumn();
+        }
+
+        private void textBoxAlbum_Click(object sender, EventArgs e) {
+            radioAlbumUseCustom.Checked = true;
+        }
+
+        private void textBoxAlbum_KeyPress(object sender, KeyPressEventArgs e) {
+            if (e.KeyChar == 13)
+                ChangeColumn(1, textBoxAlbum.Text);
+            UpdateOutputColumn();
+        }
+
+        // Artist
 
         private void radioArtistUseTag_Click(object sender, EventArgs e) {
             for (int i = 0; i < musicList.Count; i++) {
@@ -179,24 +241,12 @@ namespace MP3Fix {
             ChangeColumn(2, "Various");
         }
 
-        private void radioAlbumUseCustom_Click(object sender, EventArgs e) {
-            this.ActiveControl = textBoxAlbum;
-            if (!string.IsNullOrEmpty(textBoxAlbum.Text)) {
-                ChangeColumn(1, textBoxAlbum.Text);
-            }
-            UpdateOutputColumn();
-        }
-
         private void radioArtistUseCustom_Click(object sender, EventArgs e) {
             ActiveControl = textBoxArtist;
             if (!string.IsNullOrEmpty(textBoxArtist.Text)) {
                 ChangeColumn(2, textBoxArtist.Text);
             }
             UpdateOutputColumn();
-        }
-
-        private void textBoxAlbum_Click(object sender, EventArgs e) {
-            radioAlbumUseCustom.Checked = true;
         }
 
         private void textBoxArtist_Click(object sender, EventArgs e) {
@@ -209,46 +259,33 @@ namespace MP3Fix {
             UpdateOutputColumn();
         }
 
-        private void textBoxAlbum_KeyPress(object sender, KeyPressEventArgs e) {
-            if (e.KeyChar == 13)
-                ChangeColumn(1, textBoxAlbum.Text);
-            UpdateOutputColumn();
-        }
+        // Track
 
-        public void ChangeColumn(int column, string str) {
-            foreach (ListViewItem item in listView1.Items) {
-                item.SubItems[column].Text = str;
-            }
-        }
-
-
-        private void listView1_MouseClick(object sender, MouseEventArgs e) {           
-            textBoxManualTitle.Text = listView1.SelectedItems[0].SubItems[4].Text;
-            //textBox1.Text = sender.ToString();
-        }
-
-        private void textBoxManualTitle_TextChanged(object sender, EventArgs e) {
-            listView1.SelectedItems[0].SubItems[4].Text = textBoxManualTitle.Text;
-            UpdateOutputColumn();
-        }
-
-        private void textBoxManualTitle_KeyPress(object sender, KeyPressEventArgs e) {
-            // Nope I cannot do this bit. I want to change the SelectedItem to the next one
-            int index = listView1.SelectedIndices[0];
-            if (e.KeyChar == 13) {
-
-            }
-        }
-
-        private void buttonWriteChanges_Click(object sender, EventArgs e) {       
+        private void radioUseTagTrack_Click(object sender, EventArgs e) {
             for (int i = 0; i < musicList.Count; i++) {
-                string newArtist = listView1.Items[i].SubItems[2].Text;
-                string newAlbum = listView1.Items[i].SubItems[1].Text;
-                string newTrack = listView1.Items[i].SubItems[3].Text;
-                string newTitle = listView1.Items[i].SubItems[4].Text;
-                string newFilePath = listView1.Items[i].SubItems[5].Text;
-                musicList[i].WriteChanges(newArtist, newTrack, newTitle, newFilePath, newAlbum);
+                listView1.Items[i].SubItems[3].Text = musicList[i].Track().ToString("00");
             }
+            UpdateOutputColumn();
+        }
+
+        private void radioExtrapolateTrack_Click(object sender, EventArgs e) {
+            for (int i = 0; i < musicList.Count; i++) {
+                string x = "";
+                foreach (char c in Path.GetFileNameWithoutExtension(musicList[i].FilePath()))
+                    if (char.IsDigit(c) && x.Length <= 2) x += c;
+                listView1.Items[i].SubItems[3].Text = x;              
+            }
+            UpdateOutputColumn();
+        }
+
+        private void textBoxTrack_Click(object sender, EventArgs e) {
+            
+        }
+
+        private void textBoxTrack_TextChanged(object sender, EventArgs e) {
+            if (int.TryParse(textBoxTrack.Text, out int n))
+                listView1.SelectedItems[0].SubItems[3].Text = textBoxTrack.Text;
+            UpdateOutputColumn();
         }
     }
 }
