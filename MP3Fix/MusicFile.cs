@@ -1,5 +1,4 @@
-﻿using System;
-using TagLib;
+﻿using TagLib;
 using System.IO;
 
 // Music files are loaded in via their full path as the only argument. From then their meta data is accessed in various ways
@@ -15,7 +14,8 @@ namespace MP3Fix{
         // Must have file path at the minimum for TagLib to operate
         public MusicFile(string filePath) {
             this.filePath = filePath;
-            this.currentFile = TagLib.File.Create(filePath); // Assuming filePath is not empty
+            if (System.IO.File.Exists(filePath))
+                this.currentFile = TagLib.File.Create(filePath);
             this.artist = currentFile.Tag.Performers[0];
             this.album = currentFile.Tag.Album;
             this.title = currentFile.Tag.Title;
@@ -80,12 +80,5 @@ namespace MP3Fix{
         //    else
         //        return Path.GetFileNameWithoutExtension(filePath);
         //}
-
-
-
-        //// Writing the new file methods
-
-
-
     }
 }
