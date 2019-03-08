@@ -78,11 +78,11 @@ namespace MP3Fix {
             // Do a check for path length to ensure the folder is in the right format
             
             foreach (MusicFile file in musicList) {
-                ListViewItem newItem = new ListViewItem(file.FilePath(), 1);
-                newItem.SubItems.Add(file.Album());
-                newItem.SubItems.Add(file.Artist());
-                newItem.SubItems.Add(file.Track().ToString("00"));
-                newItem.SubItems.Add(file.Title());
+                ListViewItem newItem = new ListViewItem(file.filePath, 1);
+                newItem.SubItems.Add(file.album);
+                newItem.SubItems.Add(file.artist);
+                newItem.SubItems.Add(file.trackNo.ToString("00"));
+                newItem.SubItems.Add(file.title);
                 newItem.SubItems.Add(file.OutputFileName(" - ", ".mp3"));
                 listView1.Items.Add(newItem);
             }            
@@ -151,7 +151,7 @@ namespace MP3Fix {
         private void radioTitleUseTag_Click(object sender, EventArgs e) {
             // As long as the listview remains in order this can be used
             for (int i = 0; i < musicList.Count; i++) {
-                listView1.Items[i].SubItems[4].Text = musicList[i].Title(); 
+                listView1.Items[i].SubItems[4].Text = musicList[i].title; 
             }
             UpdateOutputColumn();
         }
@@ -185,7 +185,7 @@ namespace MP3Fix {
 
         private void radioAlbumUseTag_Click(object sender, EventArgs e) {
             for (int i = 0; i < musicList.Count; i++) {
-                listView1.Items[i].SubItems[1].Text = musicList[i].Album();
+                listView1.Items[i].SubItems[1].Text = musicList[i].album;
             }
             UpdateOutputColumn();
         }
@@ -222,7 +222,7 @@ namespace MP3Fix {
 
         private void radioArtistUseTag_Click(object sender, EventArgs e) {
             for (int i = 0; i < musicList.Count; i++) {
-                listView1.Items[i].SubItems[2].Text = musicList[i].Artist();
+                listView1.Items[i].SubItems[2].Text = musicList[i].artist;
             }
             UpdateOutputColumn();
         }
@@ -263,7 +263,7 @@ namespace MP3Fix {
 
         private void radioUseTagTrack_Click(object sender, EventArgs e) {
             for (int i = 0; i < musicList.Count; i++) {
-                listView1.Items[i].SubItems[3].Text = musicList[i].Track().ToString("00");
+                listView1.Items[i].SubItems[3].Text = musicList[i].trackNo.ToString("00");
             }
             UpdateOutputColumn();
         }
@@ -271,7 +271,7 @@ namespace MP3Fix {
         private void radioExtrapolateTrack_Click(object sender, EventArgs e) {
             for (int i = 0; i < musicList.Count; i++) {
                 string x = "";
-                foreach (char c in Path.GetFileNameWithoutExtension(musicList[i].FilePath()))
+                foreach (char c in Path.GetFileNameWithoutExtension(musicList[i].filePath))
                     if (char.IsDigit(c) && x.Length <= 2) x += c;
                 listView1.Items[i].SubItems[3].Text = x;              
             }
